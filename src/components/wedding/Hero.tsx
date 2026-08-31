@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import heroImg from "@/assets/couple-hero.jpg";
+import couplePhotoAsset from "@/assets/couple-photo.jpg.asset.json";
+
+const couplePhoto = couplePhotoAsset.url;
 import { CornerFrame, Divider } from "./Ornaments";
 
 export function Hero() {
@@ -21,13 +23,16 @@ export function Hero() {
   return (
     <section id="welcome" className="relative min-h-[100svh] overflow-hidden">
       <img
-        src={heroImg}
+        src={couplePhoto}
         alt="Myilvendhan and Nishanthi in traditional South Indian wedding attire"
-        width={1024}
-        height={1536}
+        width={1600}
+        height={1066}
         fetchPriority="high"
-        className="absolute inset-0 h-[112%] w-full object-cover object-top"
-        style={{ transform: `translate3d(0, ${-offset}px, 0)` }}
+        className="absolute inset-0 h-[112%] w-full object-cover"
+        style={{
+          transform: `translate3d(0, ${-offset}px, 0)`,
+          objectPosition: "34% 30%",
+        }}
       />
       <div className="absolute inset-0 bg-veil" />
 
