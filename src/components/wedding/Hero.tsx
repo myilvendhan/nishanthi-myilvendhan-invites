@@ -31,7 +31,7 @@ export function Hero() {
         className="absolute inset-0 h-[112%] w-full object-cover"
         style={{
           transform: `translate3d(0, ${-offset}px, 0)`,
-          objectPosition: "50% 32%",
+          objectPosition: "34% 30%",
         }}
       />
       <div className="absolute inset-0 bg-veil" />
