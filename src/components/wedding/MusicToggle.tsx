@@ -58,7 +58,7 @@ export function MusicToggle() {
       const m = masterRef.current;
       if (!c || !m) return;
       const idx = stepRef.current++;
-      const note = SCALE[(idx * 3 + (idx % 5)) % SCALE.length];
+      const note = SCALE[(idx * 3 + (idx % 5)) % SCALE.length] ?? 440;
       const t = c.currentTime;
       const osc = c.createOscillator();
       const g = c.createGain();
