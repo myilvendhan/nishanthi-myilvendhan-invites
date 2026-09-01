@@ -46,6 +46,9 @@ export function Venue() {
         <div className="mt-6">
           <p className="font-display text-2xl text-gold-gradient">Sarasu Mahal</p>
           <p className="mt-1 font-body text-sm text-muted-foreground">Aval Poondurai, Erode</p>
+          <p className="mt-3 font-body text-[0.6rem] tracking-royal text-accent-foreground">
+            11 AM — 3 PM
+          </p>
         </div>
 
 
