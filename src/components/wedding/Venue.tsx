@@ -41,15 +41,18 @@ export function Venue() {
         <p className="mt-6 font-body text-[0.6rem] tracking-royal text-muted-foreground">
           WEDDING RECEPTION
         </p>
-        <p className="mt-2 font-display text-3xl text-primary">15 September 2026</p>
+        <p className="mt-2 font-display text-4xl font-medium text-maroon">15 September 2026</p>
 
         <div className="mt-6">
-          <p className="font-display text-2xl text-gold-gradient">Sarasu Mahal</p>
-          <p className="mt-1 font-body text-sm text-muted-foreground">Aval Poondurai, Erode</p>
-          <p className="mt-3 font-body text-[0.6rem] tracking-royal text-accent-foreground">
-            11 AM — 3 PM
+          <p className="font-display text-[2.6rem] font-medium leading-tight text-maroon">
+            Sarasu Mahal
           </p>
+          <p className="mt-2 font-body text-lg font-medium text-forest">
+            Aval Poondurai, Erode
+          </p>
+          <p className="mt-4 font-display text-3xl font-medium text-maroon">11 AM — 3 PM</p>
         </div>
+
 
 
         <div className="mx-auto mt-9 w-fit rounded-sm border border-accent/60 bg-card p-2 shadow-[var(--shadow-soft)]">
