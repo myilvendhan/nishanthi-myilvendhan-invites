@@ -48,15 +48,6 @@ export function Venue() {
           <p className="mt-1 font-body text-sm text-muted-foreground">Aval Poondurai, Erode</p>
         </div>
 
-        <a
-          href={MAPS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-7 inline-flex items-center gap-2 rounded-sm border border-accent bg-primary px-8 py-3 font-body text-[0.65rem] tracking-royal text-primary-foreground shadow-[var(--shadow-soft)] transition-transform active:scale-95"
-        >
-          <Navigation className="h-3.5 w-3.5" />
-          FIND US
-        </a>
 
         <div className="mx-auto mt-9 w-fit rounded-sm border border-accent/60 bg-card p-2 shadow-[var(--shadow-soft)]">
           <div className="relative rounded-sm border border-accent/40 p-4">
