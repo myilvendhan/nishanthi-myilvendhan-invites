@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import QRCode from "qrcode";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { CornerFrame, Divider, Sprig } from "./Ornaments";
 import { useReveal } from "./useReveal";
 
