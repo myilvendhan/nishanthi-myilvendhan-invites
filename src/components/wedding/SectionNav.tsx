@@ -4,7 +4,7 @@ const SECTIONS = [
   { id: "welcome", label: "Welcome" },
   { id: "date", label: "Save the Date" },
   { id: "venue", label: "Venue" },
-  { id: "thankyou", label: "Thank You" },
+  { id: "thankyou", label: "Your Arrival" },
 ];
 
 export function SectionNav() {
