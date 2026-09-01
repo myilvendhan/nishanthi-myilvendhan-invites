@@ -20,6 +20,8 @@ export function EndCard() {
         style={{ objectPosition: "50% 22%" }}
       />
       <div className="absolute inset-0 bg-veil" />
+      <div className="absolute inset-0 bg-veil opacity-80" />
+
 
       <Sprig className="absolute -left-2 top-10 h-32 w-20 opacity-30 text-ivory" />
       <Sprig className="absolute -right-2 bottom-10 h-32 w-20 opacity-30 text-ivory" flip />
