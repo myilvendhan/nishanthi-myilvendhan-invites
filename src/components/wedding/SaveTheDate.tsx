@@ -5,6 +5,9 @@ import { useReveal } from "./useReveal";
 // 15 September 2026, 00:00 India Standard Time (UTC+5:30)
 const TARGET = Date.UTC(2026, 8, 14, 18, 30, 0);
 
+const HEART_PATH =
+  "M52 92 C 8 62, 0 30, 20 15 C 36 3, 50 12, 52 24 C 54 12, 68 3, 84 15 C 104 30, 96 62, 52 92 Z";
+
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
 
@@ -39,7 +42,17 @@ function Unit({ value, label }: { value: number; label: string }) {
   );
 }
 
-function ScratchCard({ onRevealed }: { onRevealed: () => void }) {
+function HeartScratch({
+  value,
+  label,
+  onRevealed,
+  revealed,
+}: {
+  value: string;
+  label: string;
+  revealed: boolean;
+  onRevealed: () => void;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawing = useRef(false);
   const cleared = useRef(false);
@@ -48,6 +61,7 @@ function ScratchCard({ onRevealed }: { onRevealed: () => void }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -56,39 +70,26 @@ function ScratchCard({ onRevealed }: { onRevealed: () => void }) {
     ctx.scale(dpr, dpr);
 
     const grad = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-    grad.addColorStop(0, "#c8a24a");
-    grad.addColorStop(0.35, "#efd9a0");
-    grad.addColorStop(0.6, "#b58a35");
-    grad.addColorStop(1, "#e6cd91");
+    grad.addColorStop(0, "#e03131");
+    grad.addColorStop(0.4, "#ff5a5a");
+    grad.addColorStop(0.7, "#c01d1d");
+    grad.addColorStop(1, "#f26b6b");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, rect.width, rect.height);
 
-    ctx.strokeStyle = "rgba(255,255,255,0.35)";
+    ctx.strokeStyle = "rgba(255,255,255,0.28)";
     ctx.lineWidth = 1;
-    for (let x = -rect.height; x < rect.width; x += 10) {
+    for (let x = -rect.height; x < rect.width; x += 9) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x + rect.height, rect.height);
       ctx.stroke();
     }
-    ctx.strokeStyle = "rgba(120,80,20,0.35)";
-    for (let i = 0; i < 3; i++) {
-      ctx.beginPath();
-      ctx.ellipse(
-        rect.width / 2,
-        rect.height / 2,
-        rect.width / 2 - 10 - i * 8,
-        rect.height / 2 - 8 - i * 6,
-        0,
-        0,
-        Math.PI * 2,
-      );
-      ctx.stroke();
-    }
-    ctx.fillStyle = "rgba(90,60,10,0.65)";
-    ctx.font = "600 11px Karla, sans-serif";
+
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.font = "600 8px Karla, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("SCRATCH HERE", rect.width / 2, rect.height / 2 + 4);
+    ctx.fillText("SCRATCH", rect.width / 2, rect.height / 2 + 3);
   }, []);
 
   useEffect(() => {
@@ -107,9 +108,9 @@ function ScratchCard({ onRevealed }: { onRevealed: () => void }) {
     for (let i = 3; i < data.length; i += 40) {
       if (data[i]! < 40) clear++;
     }
-    if (clear / (data.length / 40) > 0.42) {
+    if (clear / (data.length / 40) > 0.4) {
       cleared.current = true;
-      canvas.style.transition = "opacity 700ms ease";
+      canvas.style.transition = "opacity 600ms ease";
       canvas.style.opacity = "0";
       onRevealed();
     }
@@ -123,34 +124,51 @@ function ScratchCard({ onRevealed }: { onRevealed: () => void }) {
     if (!ctx) return;
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(clientX - rect.left, clientY - rect.top, 26, 0, Math.PI * 2);
+    ctx.arc(clientX - rect.left, clientY - rect.top, 18, 0, Math.PI * 2);
     ctx.fill();
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 h-full w-full cursor-pointer touch-none rounded-sm"
-      onPointerDown={(e) => {
-        drawing.current = true;
-        e.currentTarget.setPointerCapture(e.pointerId);
-        scratchAt(e.clientX, e.clientY);
-      }}
-      onPointerMove={(e) => {
-        if (!drawing.current) return;
-        scratchAt(e.clientX, e.clientY);
-      }}
-      onPointerUp={() => {
-        drawing.current = false;
-        checkProgress();
-      }}
-      onPointerLeave={() => {
-        if (drawing.current) {
-          drawing.current = false;
-          checkProgress();
-        }
-      }}
-    />
+    <div className="flex flex-col items-center">
+      <div
+        className="relative h-[96px] w-[104px]"
+        style={{ clipPath: `path("${HEART_PATH}")` }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center bg-card">
+          <span
+            className={`mt-[-6px] font-display text-2xl leading-none text-primary ${revealed ? "animate-glow" : ""}`}
+          >
+            {value}
+          </span>
+        </div>
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 h-full w-full cursor-pointer touch-none"
+          onPointerDown={(e) => {
+            drawing.current = true;
+            e.currentTarget.setPointerCapture(e.pointerId);
+            scratchAt(e.clientX, e.clientY);
+          }}
+          onPointerMove={(e) => {
+            if (!drawing.current) return;
+            scratchAt(e.clientX, e.clientY);
+          }}
+          onPointerUp={() => {
+            drawing.current = false;
+            checkProgress();
+          }}
+          onPointerLeave={() => {
+            if (drawing.current) {
+              drawing.current = false;
+              checkProgress();
+            }
+          }}
+        />
+      </div>
+      <span className="mt-2 font-body text-[0.5rem] tracking-royal text-muted-foreground">
+        {label}
+      </span>
+    </div>
   );
 }
 
@@ -182,9 +200,10 @@ function Sparkles() {
 }
 
 export function SaveTheDate() {
-  const [revealed, setRevealed] = useState(false);
+  const [parts, setParts] = useState({ day: false, month: false, year: false });
   const countdown = useCountdown();
   const ref = useReveal<HTMLElement>(0.2);
+  const allRevealed = parts.day && parts.month && parts.year;
 
   return (
     <section
@@ -201,24 +220,37 @@ export function SaveTheDate() {
         </h2>
         <Divider className="mx-auto mt-3" />
 
-        <div className="relative mx-auto mt-8 h-36 w-full overflow-hidden rounded-sm border border-accent/50 bg-card shadow-[var(--shadow-soft)]">
-          <div className="flex h-full flex-col items-center justify-center px-4">
-            <p
-              className={`font-display text-[2.05rem] leading-none text-primary ${revealed ? "animate-glow" : ""}`}
-            >
-              15 September 2026
-            </p>
-            <p className="mt-3 font-body text-[0.58rem] tracking-royal text-muted-foreground">
-              WEDDING RECEPTION
-            </p>
-          </div>
-          {!revealed && <ScratchCard onRevealed={() => setRevealed(true)} />}
-          {revealed && <Sparkles />}
+        <div className="relative mt-9 flex items-start justify-center gap-3">
+          <HeartScratch
+            value="15"
+            label="DAY"
+            revealed={parts.day}
+            onRevealed={() => setParts((p) => ({ ...p, day: true }))}
+          />
+          <HeartScratch
+            value="SEP"
+            label="MONTH"
+            revealed={parts.month}
+            onRevealed={() => setParts((p) => ({ ...p, month: true }))}
+          />
+          <HeartScratch
+            value="2026"
+            label="YEAR"
+            revealed={parts.year}
+            onRevealed={() => setParts((p) => ({ ...p, year: true }))}
+          />
+          {allRevealed && <Sparkles />}
         </div>
 
-        <p className="mt-3 font-body text-[0.6rem] tracking-[0.2em] text-muted-foreground">
-          {revealed ? "✦ SAVED WITH LOVE ✦" : "SWIPE ACROSS THE GOLD TO REVEAL"}
+        <p className="mt-5 font-body text-[0.6rem] tracking-[0.2em] text-muted-foreground">
+          {allRevealed ? "✦ SAVED WITH LOVE ✦" : "SCRATCH EACH HEART TO REVEAL THE DATE"}
         </p>
+
+        {allRevealed && (
+          <p className="animate-glow mt-4 font-display text-[1.9rem] leading-none text-primary">
+            15 September 2026
+          </p>
+        )}
 
         <div className="mt-10">
           {countdown?.done ? (

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import couplePhotoAsset from "@/assets/couple-photo.jpg.asset.json";
+import couplePhotoAsset from "@/assets/hero-couple.jpg.asset.json";
 
 const couplePhoto = couplePhotoAsset.url;
+
 import { CornerFrame, Divider } from "./Ornaments";
 
 export function Hero() {
@@ -31,9 +32,10 @@ export function Hero() {
         className="absolute inset-0 h-[112%] w-full object-cover"
         style={{
           transform: `translate3d(0, ${-offset}px, 0)`,
-          objectPosition: "34% 30%",
+          objectPosition: "50% 26%",
         }}
       />
+
       <div className="absolute inset-0 bg-veil" />
 
       <CornerFrame className="absolute left-3 top-3 h-16 w-16 opacity-70" />
