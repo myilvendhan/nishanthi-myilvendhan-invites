@@ -266,7 +266,7 @@ export function SaveTheDate() {
             </div>
           )}
           <p className="mt-4 font-body text-[0.55rem] tracking-royal text-muted-foreground">
-            COUNTING DOWN IN IST
+            UNTIL WE SAY &ldquo;WE DO&rdquo;
           </p>
         </div>
       </div>

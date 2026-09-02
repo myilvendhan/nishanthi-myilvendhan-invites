@@ -72,10 +72,6 @@ export function EnvelopeIntro() {
 
           {/* wax seal */}
           <div className="intro-seal">
-            <span className="intro-shard intro-shard--1" />
-            <span className="intro-shard intro-shard--2" />
-            <span className="intro-shard intro-shard--3" />
-            <span className="intro-shard intro-shard--4" />
             <svg viewBox="0 0 100 100" className="intro-seal-face h-full w-full">
               <defs>
                 <radialGradient id="introWax" cx="38%" cy="32%">
@@ -97,7 +93,6 @@ export function EnvelopeIntro() {
               >
                 M&amp;N
               </text>
-              <path className="intro-crack" d="M50 8 L44 34 L56 50 L46 66 L52 92" stroke="#4a3410" strokeWidth="1.6" fill="none" />
             </svg>
           </div>
 
