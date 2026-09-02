@@ -5,6 +5,8 @@ import { Venue } from "@/components/wedding/Venue";
 import { EndCard } from "@/components/wedding/EndCard";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { SectionNav } from "@/components/wedding/SectionNav";
+import { EnvelopeIntro } from "@/components/wedding/EnvelopeIntro";
+import { Sparkles } from "@/components/wedding/Sparkles";
 
 const title = "Myilvendhan & Nishanthi — Wedding Reception Invitation";
 const description =
@@ -27,6 +29,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="relative bg-background">
+      <EnvelopeIntro />
+      <Sparkles />
       <SectionNav />
       <MusicToggle />
       <Hero />
