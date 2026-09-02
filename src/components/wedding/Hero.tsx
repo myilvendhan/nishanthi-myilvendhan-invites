@@ -32,7 +32,7 @@ export function Hero() {
         className="absolute inset-0 h-[112%] w-full object-cover"
         style={{
           transform: `translate3d(0, ${-offset}px, 0)`,
-          objectPosition: "50% 26%",
+          objectPosition: "40% 34%",
         }}
       />
 
