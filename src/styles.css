@@ -241,8 +241,10 @@
 .sparkle-dot {
   position: absolute;
   border-radius: 9999px;
-  background: radial-gradient(circle, oklch(0.95 0.09 90 / 0.95), transparent 70%);
-  box-shadow: 0 0 8px oklch(0.86 0.11 88 / 0.7);
+  background: radial-gradient(circle, oklch(0.98 0.1 92 / 1), transparent 72%);
+  box-shadow:
+    0 0 10px oklch(0.88 0.12 88 / 0.9),
+    0 0 22px oklch(0.86 0.11 88 / 0.55);
   opacity: 0;
   animation: sparkle-drift 7s ease-in-out infinite;
 }
@@ -253,10 +255,10 @@
     transform: translateY(10px) scale(0.6);
   }
   35% {
-    opacity: 0.85;
+    opacity: 1;
   }
   70% {
-    opacity: 0.35;
+    opacity: 0.6;
   }
   100% {
     opacity: 0;
