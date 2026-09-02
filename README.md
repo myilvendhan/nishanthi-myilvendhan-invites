@@ -28,6 +28,8 @@ PAGE 1 — WELCOME
 
 Use the couple's uploaded photograph as the full-screen background/hero image.
 
+
+
 Apply a subtle dark/soft translucent overlay so the text remains readable while keeping the photograph clearly visible.
 
 Display:
